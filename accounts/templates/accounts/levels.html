@@ -1,0 +1,39 @@
+<!-- levels.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word World - Levels</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/levels.css' %}">
+    <!-- <link rel="stylesheet" href="levels.css"> -->
+</head>
+<body>
+    {% block content %}
+    <div class="profile-container">
+        <div class="profile-button">
+            <div class="profile-pic"></div>
+            <span class="down-arrow">▼</span>
+        </div>
+    </div>
+    <div class="level-container">
+        <a href="{% url 'level1' %}" class="level-link">
+            <button class="level-button">
+                Level 1
+            </button>
+        </a>
+        <a href="{% url 'level2' %}" class="level-link">
+            <button class="level-button">
+                Level 2
+            </button>
+        </a>
+        <a href="{% url 'level3' %}" class="level-link">
+            <button class="level-button">
+                Level 3
+            </button>
+        </a>
+    </div>
+    {% endblock %}
+</body>
+</html>

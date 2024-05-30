@@ -1,0 +1,44 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('/static/images/imgdash.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+}
+
+p {
+    font-size: 18px;
+    margin: 10px 0 20px;
+}
+
+.play-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 24px;
+    color: white;
+    background: linear-gradient(45deg, orange, yellow);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.play-button:hover {
+    opacity: 0.9;
+}

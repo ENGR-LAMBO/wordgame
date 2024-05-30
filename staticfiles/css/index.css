@@ -1,0 +1,253 @@
+/* index.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+.full-page-bg {
+    height: 100vh;
+    background: url('/static/images/generalbg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.transparent-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0);
+}
+
+.left-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.hex-button {
+    width: 60px;
+    height: 52px;
+    background-color: rgba(128, 0, 128, 0.5);
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    height: 70px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(./de43ca3b-058c-4e57-ba62-19f5c1404e51.jpeg);
+    background-size: cover;
+    background-color: aqua;
+}
+
+.profile-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.score {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+.letter-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+.letter-cell.clicked {
+    background-color: rgba(255, 255, 0, 0.709);
+    border-color: orange;
+    color: white;
+}
+
+
+/* Existing styles */
+
+.timer {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+.letter-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+.letter-cell.clicked {
+    background-color: rgba(255, 255, 0, 0.709);
+    border-color: orange;
+    color: white;
+}
+
+.letter-cell.validated {
+    background-color: green;
+    border-color: darkgreen;
+    color: white;
+}
+
+/* Add these classes for different color combinations */
+.letter-cell.light-blue {
+    background-color: lightblue;
+    border-color: darkblue;
+}
+
+.letter-cell.pink {
+    background-color: pink;
+    border-color: purple;
+}
+
+.letter-cell.light-green {
+    background-color: lightgreen;
+    border-color: darkgreen;
+}
+
+.letter-cell.light-red {
+    background-color: lightcoral; /* Light red */
+    border-color: crimson;
+}
+
+/* Add your existing CSS here */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    text-align: center;
+}
+
+.popup.show {
+    display: block;
+}
+
+.popup-content {
+    padding: 20px;
+}
+
+.popup-button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+.letter-grid {
+    display: grid;
+    gap: 5px;
+    margin: 20px auto;
+    max-width: 90%;
+}
+
+.letter-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/* .letter-cell.clicked {
+    background-color: #ddd;
+}
+
+.letter-cell.validated {
+    background-color: #bada55;
+} */
+
+/* Add additional styling as needed */

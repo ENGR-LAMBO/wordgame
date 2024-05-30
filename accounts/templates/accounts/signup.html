@@ -1,0 +1,62 @@
+<!-- templates/accounts/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% load custom_filters %}
+    <title>{% block title %}Sign Up{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header text-center">
+                        <h3>Sign Up</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_email">Email:</label>
+                                <br>
+                                {{ form.email|add_class:"form-control" }}
+                            </div> 
+                            <br>
+                            <div class="form-group">
+                                <label for="id_first_name">First name:</label>
+                                <br>
+                                {{ form.first_name|add_class:"form-control" }}
+                            </div> 
+                            <br>
+                            <div class="form-group">
+                                <label for="id_last_name">Last name:</label>
+                                <br>
+                                {{ form.last_name|add_class:"form-control" }}
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="id_password1">Password:</label>
+                                <br>
+                                {{ form.password1|add_class:"form-control" }}
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="id_password2">Password confirmation:</label>
+                                <br>
+                                {{ form.password2|add_class:"form-control" }}
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

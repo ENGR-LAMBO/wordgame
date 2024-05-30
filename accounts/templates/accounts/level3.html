@@ -1,0 +1,46 @@
+<!-- level3.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Game - Level 3</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+</head>
+<body>
+    {% block content %}
+    <section class="full-page-bg">
+        <nav class="transparent-navbar">
+            <div class="left-buttons">
+                <button class="hex-button settings">Settings</button>
+                <button class="hex-button help">Help</button>
+            </div>
+            <div class="profile-info">
+                <div class="profile-pic"></div>
+                <div class="profile-text">
+                    <span class="name">John Doe</span>
+                    <span class="score">0</span>
+                </div>
+            </div>
+        </nav>
+        <div class="timer">
+            <p>Time Remaining: <span id="time">0:30</span></p>
+        </div>
+        <div class="letter-grid">
+            <!-- Letters will be populated here -->
+        </div>
+    </section>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Time is up!</h2>
+            <button id="reload" class="popup-button">Play Again</button>
+        </div>
+    </div>
+
+    <script src="{% static 'js/level3.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

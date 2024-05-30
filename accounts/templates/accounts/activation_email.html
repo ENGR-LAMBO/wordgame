@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Activation Email</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <p>Hi {{ user.first_name }},</p>
+    <p>Thanks for signing up for WordGame! Please click the link below to activate your account:</p>
+    <p><a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">Activate your account</a></p>
+    <p>If you didn't sign up for WordGame, please ignore this email.</p>
+</body>
+</html>
+

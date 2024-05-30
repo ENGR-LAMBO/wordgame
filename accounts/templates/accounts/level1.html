@@ -1,0 +1,62 @@
+<!-- level1.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Game - Level 1</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+</head>
+<body>
+    {% block content %}
+    <section class="full-page-bg">
+        <nav class="transparent-navbar">
+            <div class="left-buttons">
+                <button class="hex-button settings">Settings</button>
+                <button class="hex-button help">Help</button>
+            </div>
+            <div class="profile-info">
+                <div class="profile-pic"></div>
+                <div class="profile-text">
+                    <span class="name">John Doe</span>
+                    <span class="score">0</span>
+                </div>
+            </div>
+        </nav>
+        <div class="timer">
+            <p>Time Remaining: <span id="time">2:00</span></p>
+        </div>
+        <div class="letter-grid">
+            <!-- Letters will be populated here -->
+        </div>
+    </section>
+
+    <!-- Time's up popup -->
+    <div id="timeup-popup" class="popup">
+        <div class="popup-content">
+            <h2>Time is up!</h2>
+            <button id="reload-timeup" class="popup-button">Play Again</button>
+            <button id="next-level-timeup" class="popup-button">
+                <a href="{% url 'level2' %}">Next Level</a>
+            </button>
+        </div>
+    </div>
+
+    <!-- You won popup -->
+    <div id="win-popup" class="popup">
+        <div class="popup-content">
+            <h2>Congrats!! You won!</h2>
+            <button id="reload-win" class="popup-button">Play Again</button>
+            <button id="next-level-win" class="popup-button">
+                <a href="{% url 'level2' %}">Next Level</a>
+            </button>
+        </div>
+    </div>
+
+    <script src="{% static 'js/index.js' %}"></script>
+    {% endblock %}
+</body>
+</html>
+

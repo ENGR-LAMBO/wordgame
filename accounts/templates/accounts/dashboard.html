@@ -1,0 +1,28 @@
+<!-- accounts/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/f1.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-box">
+                    <h1>Word World</h1>
+                    <p>Welcome to Word World! Dive into the world of words and challenge yourself. Click below to start playing!</p>
+                    <a href="{% url 'levels' %}" class="play-button">Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
+
+
