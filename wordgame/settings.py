@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-6t7q21o-s9%*+)g&!47o#fjg5h%sc@(re_4+@3moavjs($ga!a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wordgame-3snk.onrender.com']
 
 
 # Application definition
