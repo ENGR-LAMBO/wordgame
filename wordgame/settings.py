@@ -33,15 +33,29 @@ ALLOWED_HOSTS = ['wordgame-3snk.onrender.com', '127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Your apps
     'accounts',
+    'participant',
+    'wordgame',
     'django.contrib.sites',
     'accounts.templatetags',
+    
+    # Third-party apps
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'wordgame.urls'
@@ -150,6 +165,17 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
+REST_AUTH_REGISTER_SERIALIZER = 'accounts.serializers.CustomRegisterSerializer'
+
+
+# Add these settings to use email instead of username
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+
+
 # Email settings for sending activation and password reset emails
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'EMAIL_HOST_USER'
@@ -159,8 +185,29 @@ EMAIL_HOST_USER = 'EMAIL_HOST_USER'
 EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
 
 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Your Subject Prefix '
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
+
+
+
+
 # Site ID for django.contrib.sites
 SITE_ID = 1
+
+
 
 
 # URL settings
