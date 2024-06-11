@@ -3,5 +3,6 @@ django-tailwind
 gunicorn
 whitenoise
 djangorestframework
+dj_rest_auth
 
 
