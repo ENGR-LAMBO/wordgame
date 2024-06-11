@@ -2,3 +2,6 @@ Django
 django-tailwind
 gunicorn
 whitenoise
+djangorestframework
+
+
