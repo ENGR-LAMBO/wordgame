@@ -5,5 +5,4 @@ whitenoise
 djangorestframework
 dj_rest_auth
 django-allauth
-
-
+requests 
