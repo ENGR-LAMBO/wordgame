@@ -8,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% block content %}
     <p>The activation link is invalid or has expired. Please <a href="{% url 'signup' %}">sign up</a> again.</p>
+    {% endblock %}
 </body>
 </html>
 

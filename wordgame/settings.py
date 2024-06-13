@@ -29,6 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['wordgame-3snk.onrender.com', '127.0.0.1', 'localhost']
 
+# Add this to settings.py
+PORT = os.environ.get('PORT', '8000')
+
 
 # Application definition
 
@@ -142,6 +145,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -183,6 +187,35 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 
 # Email settings for sending activation and password reset emails
+
+# SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False 
+EMAIL_USE_SSL = True  # Should be False if EMAIL_USE_TLS is True
+EMAIL_HOST_USER = 'malvlambo@gmail.com'
+EMAIL_HOST_PASSWORD = 'rtmkidatmuzhpjfs'
+DEFAULT_FROM_EMAIL = 'malvlambo@gmail.com'
+
+
+
+EMAIL_HOST_USER = 'malvlambo@gmail.com'
+VERIFIED_USERS_FILE = 'path/to/verified_users.txt'  # Define the path to the verified users file
+
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+# ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Your Subject Prefix '
+# ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Use console backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'EMAIL_HOST_USER'
 EMAIL_PORT = 587
@@ -191,21 +224,7 @@ EMAIL_HOST_USER = 'EMAIL_HOST_USER'
 EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
 
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Your Subject Prefix '
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 
 
 
