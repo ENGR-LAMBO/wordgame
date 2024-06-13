@@ -30,22 +30,29 @@ from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPassw
 
 User = get_user_model()
 
+# def send_activation_email(user, request):
+#     current_site = get_current_site(request)
+#     token = default_token_generator.make_token(user)
+#     uid = urlsafe_base64_encode(force_bytes(user.pk))
+#     activation_link = request.build_absolute_uri(
+#         reverse('activate', kwargs={'uidb64': uid, 'token': token})
+#     )
+#     subject = 'Activate your WordGame account'
+#     message = render_to_string('account_activation_email.html', {
+#         'user': user,
+#         'domain': current_site.domain,
+#         'uid': uid,
+#         'token': token,
+#         'activation_link': activation_link,
+# })
 def send_activation_email(user, request):
     current_site = get_current_site(request)
-    token = default_token_generator.make_token(user)
-    uid = urlsafe_base64_encode(force_bytes(user.pk))
-    activation_link = request.build_absolute_uri(
-        reverse('activate', kwargs={'uidb64': uid, 'token': token})
-    )
-    subject = 'Activate your account.'
+    mail_subject = 'Activate your account.'
     message = render_to_string('accounts/activation_email.html', {
         'user': user,
-        'domain': current_site.domain,
-        'uid': uid,
-        'token': token,
-        'activation_link': "http://{{ domain }}{% url 'activate' uidb64=uid token=token %}",
+        'activate_url': f"http://{current_site.domain}/activate/{urlsafe_base64_encode(force_bytes(user.pk))}/{account_activation_token.make_token(user)}",
     })
-    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user.email])
+    send_mail(mail_subject, message, 'malvlambo@gmail.com', [user.email])
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
@@ -209,7 +216,7 @@ def level3(request):
 
 def activate(request, uidb64, token):
     try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
+        uid = urlsafe_base64_decode(uidb64).decode()
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
@@ -217,12 +224,9 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
-        return redirect('login')  # Redirect to login page after activation
+        return redirect('login')
     else:
-        return HttpResponse('Activation link is invalid!')
-
-
+        return render(request, 'accounts/activation_invalid.html')
 
 
 

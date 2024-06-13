@@ -246,6 +246,24 @@ LOGOUT_REDIRECT_URL = 'landing'
 PASSWORD_RESET_TIMEOUT = 600  # 10 minutes
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+    'django': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+        'propagate': True,
+    },
+}
 
 
 
