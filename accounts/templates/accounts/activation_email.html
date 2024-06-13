@@ -8,14 +8,19 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    {% block content %}
+    <p>Hi {{ user.username }},</p>
+    <p>Thanks for signing up for WordGame! Please click on the link below to verify your email address and complete the registration process:</p>
+    <p><a href="{{ activate_url }}">Activate your account</a></p>
+    <p>If you didn't sign up for WordGame, please ignore this email.</p>
+
+    {% comment %} {% block content %}
     {% autoescape off %}
     <p>Hi {{ user.username }},</p>
     <p>Thanks for signing up for WordGame! Please click on the link below to verify your email address and complete the registration process:</p>
     <p><a href="{{ activate_url }}">Activate your account</a></p>
     <p>If you didn't sign up for WordGame, please ignore this email.</p>
     {% endautoescape %}
-    {% endblock %}
+    {% endblock %} {% endcomment %}
 </body>
 </html>
 

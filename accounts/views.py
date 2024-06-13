@@ -48,9 +48,10 @@ User = get_user_model()
 def send_activation_email(user, request):
     current_site = get_current_site(request)
     mail_subject = 'Activate your account.'
+    activate_url = f"http://{current_site.domain}{reverse('activate', kwargs={'uidb64': urlsafe_base64_encode(force_bytes(user.pk)), 'token': account_activation_token.make_token(user)})}"
     message = render_to_string('accounts/activation_email.html', {
         'user': user,
-        'activate_url': f"http://{current_site.domain}/activate/{urlsafe_base64_encode(force_bytes(user.pk))}/{account_activation_token.make_token(user)}",
+        'activate_url': activate_url,
     })
     send_mail(mail_subject, message, 'malvlambo@gmail.com', [user.email])
 
