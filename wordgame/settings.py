@@ -78,7 +78,7 @@ ROOT_URLCONF = 'wordgame.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -203,23 +203,24 @@ DEFAULT_FROM_EMAIL = 'malvlambo@gmail.com'
 EMAIL_HOST_USER = 'malvlambo@gmail.com'
 VERIFIED_USERS_FILE = 'path/to/verified_users.txt'  # Define the path to the verified users file
 
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# ACCOUNT_AUTHENTICATION_METHOD = 'email'
-# ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-# ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Your Subject Prefix '
-# ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Your Subject Prefix '
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
 
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Use console backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'EMAIL_HOST_USER'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'EMAIL_HOST_USER'
 EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
 
