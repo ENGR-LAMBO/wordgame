@@ -15,3 +15,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wordgame.settings')
 
 application = get_wsgi_application()
 
+
+
+if __name__ == '__main__':
+    import os
+    from gunicorn.app.wsgiapp import run
+    port = os.environ.get('PORT', '10000')
+    run()  # This will use the default Gunicorn settings, including port

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-6t7q21o-s9%*+)g&!47o#fjg5h%sc@(re_4+@3moavjs($ga!a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wordgame-3snk.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['wordgame-3snk.onrender.com', 'localhost', '127.0.0.1']
 
 # Add this to settings.py
 PORT = os.environ.get('PORT', '8000')
@@ -258,12 +258,8 @@ LOGGING = {
         'handlers': ['console'],
         'level': 'DEBUG',
     },
-    'django': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-        'propagate': True,
-    },
 }
+
 
 
 

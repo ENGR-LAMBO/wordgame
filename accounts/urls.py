@@ -10,7 +10,8 @@ from .views import (
     CustomPasswordResetView, 
     CustomLoginView, 
     SignUpView, 
-    ActivateAccount, 
+    ActivateAccount,
+    ActivateAccountView, 
     DashboardView, 
     CustomPasswordResetConfirmView, 
     LandingPageView, 
@@ -26,6 +27,7 @@ urlpatterns = [
     # Authentication paths
     path('login/', CustomLoginView.as_view(), name='login'),
     path('signup/', SignUpView.as_view(), name='signup'),
+    path('activate/<uidb64>/<token>/', ActivateAccountView.as_view(), name='activate'),
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),

@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from accounts.views import (
-    CustomLoginView, SignUpView, ActivateAccount, DashboardView,
+    CustomLoginView, SignUpView, ActivateAccount, ActivateAccountView, DashboardView,
     CustomPasswordResetView, CustomPasswordResetConfirmView,
     root_redirect, LandingPageView, activate
 )
@@ -30,6 +30,7 @@ urlpatterns = [
     path('', root_redirect, name='root_redirect'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('signup/', SignUpView.as_view(), name='signup'),
+    path('activate/<uidb64>/<token>/', ActivateAccountView.as_view(), name='activate'),
     path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path('landing/', LandingPageView.as_view(), name='landing_page'),
