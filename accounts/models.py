@@ -6,6 +6,7 @@ from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils.crypto import get_random_string
+from .managers import CustomUserManager  # Ensure CustomUserManager is correctly defined and imported
 # from django.utils import timezone
 
 
@@ -40,6 +41,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     email_verified = models.BooleanField(default=False)
     email_verification_token = models.CharField(max_length=64, blank=True)
+    activation_token = models.CharField(max_length=64, blank=True, null=True)  # Added field
 
     objects = CustomUserManager()
 
