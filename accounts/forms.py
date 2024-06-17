@@ -31,10 +31,23 @@ class CustomUserCreationForm(UserCreationForm):
             user.save()
         return user
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('Email is already in use.')
+        return email
+
 class CustomAuthenticationForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ('username', 'password')
+
+    def confirm_login_allowed(self, user):
+        if not user.is_active:
+            raise forms.ValidationError(
+                'This account is inactive.',
+                code='inactive',
+            )
 
 class CustomPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(label='Email', max_length=254)
@@ -42,5 +55,6 @@ class CustomPasswordResetForm(PasswordResetForm):
 class CustomSetPasswordForm(SetPasswordForm):
     new_password1 = forms.CharField(label='New password', widget=forms.PasswordInput)
     new_password2 = forms.CharField(label='New password confirmation', widget=forms.PasswordInput)
+
 
 

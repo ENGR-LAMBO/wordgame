@@ -187,8 +187,20 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 
 # Email settings for sending activation and password reset emails
+# TLS
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'malvlambo@gmail.com'
+EMAIL_HOST_PASSWORD = 'rtmkidatmuzhpjfs'
+DEFAULT_FROM_EMAIL = 'malvlambo@gmail.com'
+
+VERIFIED_USERS_FILE = 'path/to/verified_users.txt'
 
 # SMTP
+# SSL
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465

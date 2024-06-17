@@ -1,13 +1,13 @@
 # accounts/views.py
 # accounts/views.py
 
-# accounts/views.py
-
 from django.views import View
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.template.loader import render_to_string
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, View
@@ -76,7 +76,7 @@ class LandingPageView(TemplateView):
     template_name = 'accounts/landing.html'
 
 class SignUpView(View):
-    form_class = CustomUserCreationForm
+    form_class = UserCreationForm
     template_name = 'accounts/signup.html'
     success_url = reverse_lazy('login')
 
@@ -91,12 +91,18 @@ class SignUpView(View):
             user.is_active = False  # Deactivate account till it is confirmed
             user.save()
             
-            # Send an email to the user with the token
-            send_activation_email(user, request)
+            # Send an email to the user with the activation token
+            mail_subject = 'Activate your account.'
+            message = render_to_string('accounts/activation_email.html', {
+                'user': user,
+                'domain': request.META['HTTP_HOST'],
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            })
+            send_mail(mail_subject, message, 'from@example.com', [user.email])
             return render(request, 'accounts/activation_sent.html')
 
         return render(request, self.template_name, {'form': form})
-
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'accounts/password_reset.html'
     email_template_name = 'accounts/password_reset_email.html'
@@ -210,21 +216,11 @@ def level2(request):
 def level3(request):
     return render(request, 'accounts/level3.html')
 
-def activate(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
+def level4(request):
+    return render(request, 'accounts/level4.html')
 
-    if user is not None and default_token_generator.check_token(user, token):
-        user.is_active = True
-        user.save()
-        return redirect('login')
-    else:
-        return render(request, 'accounts/activation_invalid.html')
-
-
+def final(request):
+    return render(request, 'accounts/final.html')
 
 # # accounts/views.py
 
