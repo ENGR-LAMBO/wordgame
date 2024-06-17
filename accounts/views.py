@@ -86,7 +86,7 @@ def generate_activation_token(email):
 def send_activation_email(user, request):
     token = generate_activation_token(user.email)
     activation_link = f"https://wordgame-3snk.onrender.com/activate/{token}/"
-    # Implement your email sending logic here
+    # Implement your email sending logic here!
     # Example: send_mail('Account Activation', f'Activate your account: {activation_link}', 'from@example.com', [user.email])
     print(f'Send email to {user.email} with activation link: {activation_link}')
 
